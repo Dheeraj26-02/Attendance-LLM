@@ -24,20 +24,23 @@
             <div class="menu">
                 <h1>DashBoard</h1>
             </div>
+            <form action="{{ url_for('logout') }}" method="post">
+                <button id="button" type="submit"
+                    style="background-color: white; border-radius: 30px; outline: none; border: none; padding: 8px; width: 100px;cursor: pointer;">Log
+                    out</button>
+            </form>
         </header>
 
         <div class="main-content">
             <aside class="sidebar">
                 <ul class="menu-list">
                     <li class="menu-title">ACADEMIC</li>
-                    <li class="items"><a href="/dash"><img src="../static/das.png" alt=""
+                    <li class="items"><a href="/dashTeacher"><img src="../static/das.png" alt=""
                                 class="side-icon"><span>Dashboard<span></a></li>
                     <li class="items"><a href=""><img src="../static/registration.png" alt=""
                                 class="side-icon"><span>Registration<span></a></li>
-                    <li class="items"><a href="/attendance"><img src="../static/att.png" alt=""
-                                class="side-icon"><span>Attendance<span></a></li>
                     <li class="items"><a href="/faculty"><img src="../static/att.png" alt=""
-                        class="side-icon"><span>Faculty Attendance<span></a></li>
+                                class="side-icon"><span>Faculty Attendance<span></a></li>
                     <li class="items"><a href=""><img src="../static/acc.png" alt="" class="side-icon"><span>Main
                                 Account<span></a></li>
                     <li class="items"><a href=""><img src="../static/policy.png" alt=""
@@ -71,12 +74,13 @@
                                 class="side-icon"><span>Admissions Predictor<span></a></li>
                     <li class="items"><a href="/placement_predictor"><img src="../static/place.png" alt=""
                                 class="side-icon"><span>Placements Predictor<span></a></li>
-                                    <li class="items"><a href="/admin_portal"><img src="../static/acc.png" alt="" class="side-icon"><span>Admin Potal<span></a></li>
+                    <li class="items"><a href="/admin_portal"><img src="../static/acc.png" alt=""
+                                class="side-icon"><span>Admin Potal<span></a></li>
                 </ul>
             </aside>
 
             <section class="content-container">
-                
+
                 <div class="faculty-details">
                     <h1>Profile</h1>
                     <div class="avatar">
@@ -114,7 +118,7 @@
                             <h3>Timing:- &nbsp;</h3>
                             <input type="text" id="date" placeholder="Enter date">
                         </div>
-                        <button id="btn" ><span>Generate</span></button>
+                        <button id="btn"><span>Generate</span></button>
                     </div>
                 </div>
                 <div class="attendance">
@@ -123,7 +127,8 @@
                             <img src="" alt="" id="qrImage">
                         </div>
                         <div class="otp">
-                            <h1>OTP:-&nbsp;</h1><h2 class="random">1234</h2>
+                            <h1>OTP:-&nbsp;</h1>
+                            <h2 class="random">1234</h2>
                         </div>
                         <p>The OTP will expire in <span id="expire">10</span>s</p>
                         <div class="remove">
@@ -131,6 +136,26 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+             
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div class="current">
                     <div class="head">
                         <h1>Upcoming Lectures</h1>
@@ -206,12 +231,12 @@
                         </div>
                     </div>
                 </div>
-                
+
             </section>
         </div>
     </div>
     <script src="../static/faculty.js"></script>
-   
+
 
 </body>
 

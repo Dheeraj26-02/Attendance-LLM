@@ -158,21 +158,6 @@ def create_placement_plot(course):
     return plot_url, int(predicted_placement)
 
 
-
-
-
-
-
-@app.route("/")
-def login():
-    return render_template("login.html")
-
-@app.route("/dash")
-def home():
-    return render_template("index.html")
-
-
-
 @app.route("/admission_predictor")
 def admission():
     return render_template("admission.html", courses=list(data_admission.keys())[1:])
@@ -207,6 +192,18 @@ def get_placement_data():
         dict_placement=dict_placement,
     )
 
+@app.route("/")
+def login():
+    return render_template("login.html")
+
+@app.route("/dashTeacher")
+def home1():
+    return render_template("indexTeacher.html")
+
+@app.route("/dashStudent")
+def home():
+    return render_template("indexStudent.html")
+
 
 @app.route("/attendance")
 def attendance():
@@ -228,17 +225,17 @@ def faculty():
             student_roll=student_roll,
             depart_name=depart_name
         )
-    
-
-@app.route("/admin_portal")
-def admin_portal():
-    return render_template("admin.html")
 
 
-@app.route("/admin_portal", methods=["POST"])
-def get_admin_data():
+# @app.route("/admin_portal")
+# def admin_portal():
+#     return render_template("admin.html")
 
-    return "File type not allowed"
+
+# @app.route("/admin_portal", methods=["POST"])
+# def get_admin_data():
+
+#     return "File type not allowed"
 
 
 from flask import Flask, request, jsonify
@@ -292,7 +289,7 @@ def scanFaculty():
 def insert_student(table_name, name, roll_number):
     conn = sqlite3.connect("attendance.db")  # Connect to the specific database
     cursor = conn.cursor()
-    print(name);
+    print(name)
     print("inserting into database")
     # Insert the student details
     cursor.execute(
@@ -317,6 +314,7 @@ def scan():
             name, roll_number, table_name = student_details.split(",")
             roll_number = int(roll_number)  # Ensure roll_number is an integer
             print(table_name)
+            data=get_data_from_db(table_name)
             # Create a new attendance entry
             insert_student(table_name, name, roll_number)
 
@@ -340,6 +338,18 @@ app.secret_key = "gla"
 # @app.route("/l")
 # def login():
 #     return render_template("login.html")
+
+
+@app.route("/logout", methods=["POST"])
+def logout():
+    """
+    Logs the user out by clearing the session and redirecting to the login page.
+    """
+    # Clear the session
+    session.clear()
+
+    # Redirect to the login page
+    return render_template("login.html")
 
 
 @app.route("/login", methods=["POST"])
@@ -377,7 +387,7 @@ def teacher_portal():
 
     if student_name and student_roll and depart_name!="nan":
         return render_template(
-            "index.html",
+            "indexTeacher.html",
             student_name=student_name,
             student_roll=student_roll,
             depart_name=depart_name
@@ -394,12 +404,36 @@ def student_portal():
 
     if student_name and student_roll:
         return render_template(
-            "index.html", student_name=student_name, student_roll=student_roll
+            "indexStudent.html", student_name=student_name, student_roll=student_roll
         )
     else:
         return redirect(
             url_for("login")
         )  # If session data is missing, redirect to login
+
+
+def get_data_from_db(table_name):
+    conn = sqlite3.connect('attendance.db')  # Connect to your SQLite database
+    cursor = conn.cursor()
+    
+    # Query the database (adjust this query to your table structure)
+    cursor.execute(f'SELECT * FROM {table_name}')
+    rows = cursor.fetchall()  # Fetch all results
+    print("sending");
+    conn.close()
+    return rows
+
+table_name="";
+print(table_name+"show");
+
+@app.route('/faculty')
+def index():
+    # Get data from the database
+    data=get_data_from_db(table_name)
+    print(data);
+    
+    # Pass the data to the template
+    return render_template('attendanceFaculty.html', data=data)
 
 
 if __name__ == "__main__":

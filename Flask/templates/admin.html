@@ -24,6 +24,11 @@
             <div class="menu">
                 <h1>DashBoard</h1>
             </div>
+            <form action="{{ url_for('logout') }}" method="post">
+                <button id="button" type="submit"
+                    style="background-color: white; border-radius: 30px; outline: none; border: none; padding: 8px; width: 100px;cursor: pointer;">Log
+                    out</button>
+            </form>
         </header>
 
         <div class="main-content">

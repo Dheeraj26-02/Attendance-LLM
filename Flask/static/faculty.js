@@ -79,9 +79,9 @@ function generateQr(code_Data){
         },1000);
     }
 }
-
+code_Data_global="";
 function sendQrDataToServer(code_Data) {
-    
+    code_Data_global=code_Data;
     
     fetch('/qr', {
         method: 'POST',
@@ -103,3 +103,28 @@ function sendQrDataToServer(code_Data) {
         console.error('Error:', error); 
     });
 }
+
+    function showList() {
+        // Define the table name you want to send
+        let tableName = code_Data_global; 
+        console.log(tableName+"show");
+        
+
+        // Make a POST request to the Flask backend
+        fetch("/show", {
+            method: "GET", // Use POST request
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                code_Data: tableName, // The key here should match what the Flask app expects
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Server Response:", data);
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    };

@@ -22,7 +22,7 @@
                 <div class="header-info">GLA UNIVERSITY</div>
             </div>
             <div class="menu">
-                <h1>Admission Predictor</h1>
+                <h1>DashBoard</h1>
             </div>
             <form action="{{ url_for('logout') }}" method="post">
                 <button id="button" type="submit"
@@ -35,10 +35,9 @@
             <aside class="sidebar">
                 <ul class="menu-list">
                     <li class="menu-title">ACADEMIC</li>
-                    <li class="items"><a href="/"><img src="/static/das.png" alt="" class="side-icon"><span>Dashboard<span></a></li>
+                    <li class="items"><a href="/dashStudent"><img src="/static/das.png" alt="" class="side-icon"><span>Dashboard<span></a></li>
                     <li class="items"><a href=""><img src="/static/registration.png" alt="" class="side-icon"><span>Registration<span></a></li>
                     <li class="items"><a href="/attendance"><img src="/static/att.png" alt="" class="side-icon"><span>Attendance<span></a></li>
-                    <li class="items"><a href="/faculty"><img src="/static/att.png" alt="" class="side-icon"><span>Faculty Attendance<span></a></li>
                     <li class="items"><a href=""><img src="/static/acc.png" alt="" class="side-icon"><span>Main Account<span></a></li>
                     <li class="items"><a href=""><img src="/static/policy.png" alt="" class="side-icon"><span>Policies<span></a></li>
                     <li class="items"><a href=""><img src="/static/adv.png" alt="" class="side-icon"><span>My Advisor<span></a></li>
@@ -57,59 +56,25 @@
                     <li class="items"><a href=""><img src="/static/lib.png" alt="" class="side-icon"><span>Library Account<span></a></li>
                     <li class="items"><a href="/admission_predictor"><img src="/static/place.png" alt="" class="side-icon"><span>Admissions Predictor<span></a></li>
                     <li class="items"><a href="/placement_predictor"><img src="/static/place.png" alt="" class="side-icon"><span>Placements Predictor<span></a></li>
-                        <li class="items"><a href="/admin_portal"><img src="/static/acc.png" alt="" class="side-icon"><span>Admin Potal<span></a></li>
+                    <li class="items"><a href="/admin_portal"><img src="/static/acc.png" alt="" class="side-icon"><span>Admin Potal<span></a></li>
                 </ul>
             </aside>
-            <section class="content">
-                <div class="select">
-                    <div class="label">
-                        <label for="course">
-                            <h3>Select Department</h3>
-                        </label>
-                        <form id="courseForm_Admission">
-                            <select id="course" name="course">
-                                {% for course in courses %}
-                                <option value="{{ course }}">{{ course }}</option>
-                                {% endfor %}
-                            </select>
-                            <button type="submit">Get Prediction</button>
-                        </form>
-                    </div>
-                </div>
 
-                <div class="total">
-                    <div class="ad">
-                        <section><h3>The Number of admissions predicted for this year : <span id="predicted_admission"></span></section>
+            <section class="content-container">
+                <div class="inner-container">
+                    <div>
+                        <h1>GLA University</h1>
                     </div>
-                </div>
-                <div class="diag-container">
-                    <div class="diag">
-                        <div class="diag_heading">
-                            <h1> Histogram to depict the predicted trend</h1>
-                        </div>
-                        <div class="labels">
-                            <img id="plot_admission" src="">
-                        </div>
+                    <div>
+                        <img src="/static/icon.png" alt="GLA University Logo">
                     </div>
-                    <div class="video">
-                        <video width="500" height="500" autoplay preload="auto" loop muted>
-                        <source src="/static/admission.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
-                <div class="past">
-                    <div class="timeline-heading"> <h1> Past Admissions Timeline </h1> </div>
-                    <div class="container">
-                        <div class="timeline-container" id="timeline-container">
-        
-                        </div>
+                    <div>
+                        <h2>Welcome to your Dashboard</h2>
                     </div>
                 </div>
             </section>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 
 </html>
